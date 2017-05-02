@@ -11,6 +11,7 @@ import ItemViewExamples from './examples/item-view/Index';
 import HeaderExamples from './examples/header/Index';
 import LabelValueViewExamples from './examples/label-value-view/Index';
 import NoDataViewExamples from './examples/no-data-view/Index';
+import TabsExamples from './examples/tabs/Index';
 
 // Test
 /* eslint-disable import/first */
@@ -36,6 +37,7 @@ ReactDOM.render((
       <Route path="item-view" component={ItemViewExamples} />
       <Route path="label-value-view" component={LabelValueViewExamples} />
       <Route path="no-data-view" component={NoDataViewExamples} />
+      <Route path="tabs" component={TabsExamples} />
     </Route>
     <Route path="/tests" component={TestLinks} />
     {DetailViewTestRoutes}

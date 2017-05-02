@@ -1,0 +1,40 @@
+$accent: #4cb2e9;
+$border-color: #dedfe0;
+$inverse: #1c1f21;
+$link-color: #0065a3;
+$gutter: 20;
+$half-gutter: $gutter * 0.5;
+$baseline: 20 * (14 / 14) / 2;
+
+// Tabs
+// --------------------------------------------------
+$terra-tab-container-bottom-border: 1px solid $border-color;
+$terra-tab-bottom-border: 2px solid transparent;
+$terra-tab-color: $link-color;
+$terra-tab-horizontal-spacing: 1;  // Slightly separate the tabs per UX specification.
+// UX requested a max of 20 characters prior to injecting ellipsis.
+// Using 15em instead of 20em since, on average, it will yield results closer to UX's desires.
+// Will not always perfectly allow 20 characters.
+$terra-tab-max-width: 15em;
+$terra-text-transform: none;
+
+// Focus
+$terra-tab-focus-bottom-border: 2px solid $border-color;
+$terra-tab-focus-color: $inverse;
+
+// Hover
+$terra-tab-hover-bottom-border: 2px solid $border-color;
+$terra-tab-hover-color: $inverse;
+
+// Active
+$terra-tab-active-bottom-border: 2px solid $accent;
+$terra-tab-active-color: $inverse;
+
+// UX requested the height to be 40px
+// 20 for text line height + 18 vertical padding + 2 for the border
+// Side padding should be 15. 20 - (10/2) = 15.
+$terra-tab-sm-padding: 15px;
+
+// UX requested additional side-padding on the large or larger viewports
+// 20 for text line height + 18 vertical padding + 2 for the border
+$terra-tab-lg-padding: 40px;

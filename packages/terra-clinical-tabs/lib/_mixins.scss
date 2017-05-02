@@ -1,0 +1,37 @@
+// Used to self clear floated child elements
+// More info: h5bp.com/q
+@mixin clearfix {
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: normal;
+  word-wrap: normal;
+}
+
+// Takes argument for amount.
+@mixin margin-start($amount) {
+  margin-left: $amount;
+}
+
+@mixin float-start() {
+  float: left;
+}
+
+// Takes argument for amount.
+@mixin margin-end($amount) {
+  margin-right: $amount;
+}

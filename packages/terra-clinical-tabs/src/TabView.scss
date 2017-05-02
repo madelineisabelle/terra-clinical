@@ -1,0 +1,78 @@
+@import '~terra-mixins';
+@import './variables';
+@import './mixins';
+
+.tabs {
+  list-style: none;
+}
+
+.has-tabs > [data-toggle="dropdown"] {
+  display: inline-block;
+}
+
+@media screen and (min-width: 760px) {
+  .has-tabs > [data-toggle="dropdown"] {
+    display: none;
+  }
+
+  .tabs {
+    @include clearfix();
+    @include margin-start(0);
+    border-bottom: $terra-tab-container-bottom-border;
+    list-style: none;
+
+    > li {
+      @include float-start();
+    }
+
+    > li > a {
+      @include margin-end($terra-tab-horizontal-spacing);
+      @include text-truncate();
+      padding: $terra-tab-sm-padding;
+      border-bottom: $terra-tab-bottom-border;
+      color: $terra-tab-color;
+      display: block;
+      max-width: $terra-tab-max-width;
+      text-transform: $terra-text-transform;
+      cursor: pointer;
+
+      &:focus,
+      .no-touch &:hover {
+        text-decoration: none;
+      }
+
+      &:focus {
+        border-bottom: $terra-tab-focus-bottom-border;
+        color: $terra-tab-focus-color;
+      }
+
+      &:hover {
+        border-bottom: $terra-tab-hover-bottom-border;
+        color: $terra-tab-hover-color;
+      }
+    }
+
+    > .is-active > a,
+    a.is-active {
+      & {
+        border-bottom: $terra-tab-active-bottom-border;
+        color: $terra-tab-active-color;
+      }
+
+      &,
+      &:hover,
+      &:focus {
+        border-bottom: $terra-tab-active-bottom-border;
+        color: $terra-tab-active-color;
+        cursor: default;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1276px) {
+  .tabs > li > a {
+    padding: $terra-tab-sm-padding;
+  }
+}
+
