@@ -11,12 +11,13 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The id of the currently displayed TabPanel
+   * The initial tab key
    */
-  selectedPanelId: PropTypes.string,
+  initialTabKey: PropTypes.string,
 };
 
 const defaultProps = {
+  initialTabKey: undefined,
 };
 
 
@@ -25,31 +26,37 @@ class TabView extends React.Component {
     super(props);
     this.handleSelection = this.handleSelection.bind(this);
     this.cloneChildren = this.cloneChildren.bind(this);
-    this.state = { selectedPanelId: 'panel1'};
+    this.state = { selectedTabKey: this.props.initialTabKey};
   }
 
-  handleSelection(event, panelId) {
-    this.setState({ selectedPanelId: panelId });
+  handleSelection(event, tabKey) {
+    this.setState({ selectedTabKey: tabKey });
   }
 
   wrappedOnClickForTab(tab) {
     return (event) => {
-      this.handleSelection(event, tab.props.panelId);
+      this.handleSelection(event, tab.props.tabKey);
     };
   }
 
   cloneChildren(children) {
+    var currentTabKey = this.state.selectedTabKey;
+
     return React.Children.map(children, child => {
       if(!React.isValidElement(child)) return child;
       const newProps = {};
 
       if (child.type === Tab) {
         newProps.handleOnClick = this.wrappedOnClickForTab(child);
-        newProps.isSelected = (this.state.selectedPanelId == child.props.panelId);
+        if (currentTabKey == undefined) {
+          currentTabKey = child.props.tabKey;
+          this.setState({ selectedTabKey: currentTabKey});
+        }
+        newProps.isSelected = (currentTabKey == child.props.tabKey);
       }
 
       else if (child.type === TabPanel) {
-        newProps.isSelected = (this.state.selectedPanelId == child.props.id);
+        newProps.isSelected = (currentTabKey == child.props.tabKey);
       }
 
       newProps.children = this.cloneChildren(child.props.children);

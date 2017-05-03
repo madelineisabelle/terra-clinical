@@ -6,15 +6,11 @@ const propTypes = {
   /**
    * The content passed to the component
    */
-  content: PropTypes.node.isRequired,
+  content: PropTypes.node,
   /**
-   * The id of the TabPanel
+   * The key of the associated Tab
    */
-  id: PropTypes.string,
-  /**
-   * The id of the associated Tab
-   */
-  tabId: PropTypes.string,
+  tabKey: PropTypes.string,
   /**
    * The boolean representing whether a TabPanel's tab is selected or not
    */
@@ -25,9 +21,9 @@ const defaultProps = {
 	isSelected: true,
 };
 
-const TabPanel = ({content, id, tabId, isSelected }) => {
+const TabPanel = ({content, tabKey, isSelected }) => {
   return (
-    <section className="tabpanel" role="tabpanel" id={id} aria-labelledby={tabId}>
+    <section className="tabpanel" role="tabpanel">
   		{isSelected ? content : null}
   	</section>
   );

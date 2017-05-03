@@ -44,12 +44,14 @@ var propTypes = {
    */
   children: _react.PropTypes.node,
   /**
-   * The id of the currently displayed TabPanel
+   * The initial tab key
    */
-  selectedPanelId: _react.PropTypes.string
+  initialTabKey: _react.PropTypes.string
 };
 
-var defaultProps = {};
+var defaultProps = {
+  initialTabKey: undefined
+};
 
 var TabView = function (_React$Component) {
   _inherits(TabView, _React$Component);
@@ -61,14 +63,14 @@ var TabView = function (_React$Component) {
 
     _this.handleSelection = _this.handleSelection.bind(_this);
     _this.cloneChildren = _this.cloneChildren.bind(_this);
-    _this.state = { selectedPanelId: 'panel1' };
+    _this.state = { selectedTabKey: _this.props.initialTabKey };
     return _this;
   }
 
   _createClass(TabView, [{
     key: 'handleSelection',
-    value: function handleSelection(event, panelId) {
-      this.setState({ selectedPanelId: panelId });
+    value: function handleSelection(event, tabKey) {
+      this.setState({ selectedTabKey: tabKey });
     }
   }, {
     key: 'wrappedOnClickForTab',
@@ -76,7 +78,7 @@ var TabView = function (_React$Component) {
       var _this2 = this;
 
       return function (event) {
-        _this2.handleSelection(event, tab.props.panelId);
+        _this2.handleSelection(event, tab.props.tabKey);
       };
     }
   }, {
@@ -84,15 +86,21 @@ var TabView = function (_React$Component) {
     value: function cloneChildren(children) {
       var _this3 = this;
 
+      var currentTabKey = this.state.selectedTabKey;
+
       return _react2.default.Children.map(children, function (child) {
         if (!_react2.default.isValidElement(child)) return child;
         var newProps = {};
 
         if (child.type === _Tab2.default) {
           newProps.handleOnClick = _this3.wrappedOnClickForTab(child);
-          newProps.isSelected = _this3.state.selectedPanelId == child.props.panelId;
+          if (currentTabKey == undefined) {
+            currentTabKey = child.props.tabKey;
+            _this3.setState({ selectedTabKey: currentTabKey });
+          }
+          newProps.isSelected = currentTabKey == child.props.tabKey;
         } else if (child.type === _TabPanel2.default) {
-          newProps.isSelected = _this3.state.selectedPanelId == child.props.id;
+          newProps.isSelected = currentTabKey == child.props.tabKey;
         }
 
         newProps.children = _this3.cloneChildren(child.props.children);

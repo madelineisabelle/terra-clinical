@@ -14,7 +14,7 @@ const defaultProps = {
 
 const Tabs= ({children}) => {
   return (
-    <ul className="tabs" role="tablist menu" data-update-hash="true">
+    <ul className="tabs" role="tablist menu">
       {children}
     </ul>
   );

@@ -8,17 +8,13 @@ const propTypes = {
    */
   title: PropTypes.string,
   /**
-   * The id of the TabPanel that should be displayed when this Tab is selected
-   */
-  panelId: PropTypes.string.isRequired,
-  /**
    * The boolean representing whether a tab is selected or not
    */
   isSelected: PropTypes.bool,
   /**
-   * The id of the Tab
+   * The key of the Tab
    */
-  id: PropTypes.string,
+  tabKey: PropTypes.string.isRequired,
   /**
    * The function to handle click events on the hyperlink
    */
@@ -27,14 +23,13 @@ const propTypes = {
 
 const defaultProps = {
   isSelected: false,
-  id: null,
   handleOnClick: null,
 };
 
-const Tab = ({title, panelId, isSelected, id, handleOnClick}) => {
+const Tab = ({title, isSelected, tabKey, handleOnClick}) => {
   return (
-    <li role="presentation" id={id} key={id}>
-      <a aria-controls={panelId} role="tab" onClick={handleOnClick} aria-selected={isSelected} className={isSelected ? 'is-active' : ''}> {title}</a>
+    <li role="presentation" key={tabKey}>
+      <a role="tab" onClick={handleOnClick} aria-selected={isSelected} className={isSelected ? 'is-active' : ''}> {title}</a>
     </li>
   );
 };

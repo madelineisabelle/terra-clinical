@@ -22,17 +22,13 @@ var propTypes = {
    */
   title: _react.PropTypes.string,
   /**
-   * The id of the TabPanel that should be displayed when this Tab is selected
-   */
-  panelId: _react.PropTypes.string.isRequired,
-  /**
    * The boolean representing whether a tab is selected or not
    */
   isSelected: _react.PropTypes.bool,
   /**
-   * The id of the Tab
+   * The key of the Tab
    */
-  id: _react.PropTypes.string,
+  tabKey: _react.PropTypes.string.isRequired,
   /**
    * The function to handle click events on the hyperlink
    */
@@ -41,23 +37,21 @@ var propTypes = {
 
 var defaultProps = {
   isSelected: false,
-  id: null,
   handleOnClick: null
 };
 
 var Tab = function Tab(_ref) {
   var title = _ref.title,
-      panelId = _ref.panelId,
       isSelected = _ref.isSelected,
-      id = _ref.id,
+      tabKey = _ref.tabKey,
       handleOnClick = _ref.handleOnClick;
 
   return _react2.default.createElement(
     'li',
-    { role: 'presentation', id: id, key: id },
+    { role: 'presentation', key: tabKey },
     _react2.default.createElement(
       'a',
-      { 'aria-controls': panelId, role: 'tab', onClick: handleOnClick, 'aria-selected': isSelected, className: isSelected ? 'is-active' : '' },
+      { role: 'tab', onClick: handleOnClick, 'aria-selected': isSelected, className: isSelected ? 'is-active' : '' },
       ' ',
       title
     )

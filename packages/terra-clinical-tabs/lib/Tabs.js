@@ -32,7 +32,7 @@ var Tabs = function Tabs(_ref) {
 
   return _react2.default.createElement(
     'ul',
-    { className: 'tabs', role: 'tablist menu', 'data-update-hash': 'true' },
+    { className: 'tabs', role: 'tablist menu' },
     children
   );
 };

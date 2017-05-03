@@ -20,15 +20,11 @@ var propTypes = {
   /**
    * The content passed to the component
    */
-  content: _react.PropTypes.node.isRequired,
+  content: _react.PropTypes.node,
   /**
-   * The id of the TabPanel
+   * The key of the associated Tab
    */
-  id: _react.PropTypes.string,
-  /**
-   * The id of the associated Tab
-   */
-  tabId: _react.PropTypes.string,
+  tabKey: _react.PropTypes.string,
   /**
    * The boolean representing whether a TabPanel's tab is selected or not
    */
@@ -41,13 +37,12 @@ var defaultProps = {
 
 var TabPanel = function TabPanel(_ref) {
   var content = _ref.content,
-      id = _ref.id,
-      tabId = _ref.tabId,
+      tabKey = _ref.tabKey,
       isSelected = _ref.isSelected;
 
   return _react2.default.createElement(
     'section',
-    { className: 'tabpanel', role: 'tabpanel', id: id, 'aria-labelledby': tabId },
+    { className: 'tabpanel', role: 'tabpanel' },
     isSelected ? content : null
   );
 };
